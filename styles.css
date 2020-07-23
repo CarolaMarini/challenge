@@ -1,4 +1,19 @@
 #myForm{
-    text-align: center;
     margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+#response{
+    border: gray solid 2px;
+    padding: 3%;
+    border-radius: 5px;
+}
+
+.center{
+    width: 30%;
+    margin: 0 auto;
+}
+
+.align{
+  text-align: center;
 }

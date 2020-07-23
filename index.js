@@ -1,23 +1,17 @@
-/* let button = document.querySelector('#btn')
 
-if(button){onLoad(button)}
+function validateEntries(entries) {
+    let nonNumericFields = nonNumericEntries(entries).join(", ")
 
-function onLoad(button){
-    button.addEventListener('click', () => {
-        let formResponse = document.querySelector('#myForm')
-        nonNumericEntries(formDataToJson(formResponse))
-      })            
-}
- */
-function formDataToJson(data) {
-    let entries = Array.from(new FormData(data))
-    return Object.fromEntries(entries)
+    if (nonNumericFields.length) {
+        let alertMsg = `Los campos ${nonNumericFields} no son numereos`
+        alert(alertMsg)
+    }
 }
 
 function nonNumericEntries(entries) {
     let nonNumeric = []
     for (let key in entries) {
-        if (isNaN(Number(entries[key]))) {
+        if (isNaN(parseFloat(entries[key]))) {
             nonNumeric.push(key)
         }
     }
@@ -35,11 +29,10 @@ function sumEntries(entries) {
 function subEntries(entries) {
     let result;
     for (let key in entries) {
-        let num = Number(entries[key])
         if (!result) {
-            result = num
+            result = entries[key]
         } else {
-            result -= num
+            result -= entries[key]
         }
     }
     return result
@@ -48,7 +41,7 @@ function subEntries(entries) {
 function divEntries(entries) {
     let result;
     for (let key in entries) {
-        let num = Number(entries[key])
+        num = entries[key]
         if (!(num)) {
             return null
         }
@@ -62,13 +55,12 @@ function divEntries(entries) {
 }
 
 function multiplyEntries(entries) {
-    let result;
+    let result = null
     for (let key in entries) {
-        let num = Number(entries[key])
-        if (!result) {
-            result = num
+        if (result == null) {
+            result = entries[key]
         } else {
-            result *= num
+            result *= entries[key]
         }
     }
     return result
@@ -77,8 +69,7 @@ function multiplyEntries(entries) {
 function orderEntriesAsc(entries) {
     let result = []
     for (let key in entries) {
-        let num = Number(entries[key])
-        result.push(num)
+        result.push(entries[key])
     }
     result.sort()
     return result
@@ -87,9 +78,16 @@ function orderEntriesAsc(entries) {
 function orderEntriesDes(entries) {
     let result = []
     for (let key in entries) {
-        let num = Number(entries[key])
-        result.push(num)
+        result.push(entries[key])
     }
     result = result.sort((a, b) => b - a)
     return result
+}
+
+function entriesToNumbers(entries) {
+    for (let key in entries) {
+        entries[key] = entries[key]
+
+    }
+    return entries
 }

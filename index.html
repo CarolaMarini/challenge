@@ -9,41 +9,79 @@
 </head>
 
 <body>
-    <form action="" method="post" id="myForm">
-        <label>
-            Numero 1:
+    <div>
+        <form action="" method="post" id="myForm" class="align">
+            <label>
+                Numero 1:
+                <br>
+                <input type="text" name="numero1">
+                <br>
+            </label>
+            <label>
+                Numero 2:
+                <br>
+                <input type="text" name="numero2">
+                <br>
+            </label>
+            <label>
+                Numero 3:
+                <br>
+                <input type="text" name="numero3">
+                <br>
+            </label>
+            <label>
+                Numero 4:
+                <br>
+                <input type="text" name="numero4">
+                <br>
+            </label>
+            <label>
+                Numero 5:
+                <br>
+                <input type="text" name="numero5">
+                <br>
+            </label>
             <br>
-            <input type="text" name="input1">
-            <br>
-        </label>
-        <label>
-            Numero 2:
-            <br>
-            <input type="text" name="input2">
-            <br>
-        </label>
-        <label>
-            Numero 3:
-            <br>
-            <input type="text" name="input3">
-            <br>
-        </label>
-        <label>
-            Numero 4:
-            <br>
-            <input type="text" name="input4">
-            <br>
-        </label>
-        <label>
-            Numero 5:
-            <br>
-            <input type="text" name="input5">
-            <br>
-        </label>
-        <br>
-        <button type="submit" id="btn">Submit</button>
-    </form>
+            <button type="button" id="btn">Submit</button>
+        </form>
+    </div>
+    <div class="center align">JSON response</div>
+    <br>
+    <div id="response" class="center"></div>
     <script src="index.js"></script>
+
+    <script>
+        (function () {
+            let button = document.querySelector('#btn')
+            button.addEventListener('click', () => {
+                let formResponse = document.querySelector('#myForm')
+                let alphanumericEntries = Object.fromEntries(Array.from(new FormData(formResponse)))
+                let entries = entriesToNumbers(alphanumericEntries)
+
+                validateEntries(entries)
+
+                let divResponse;
+                if (divEntries(entries) === null) {
+                    divResponse = divEntries(entries)
+                } else {
+                    divResponse = "No se puede dividir por 0"
+                }
+
+                let response =
+                {
+                    sumar: sumEntries(entries),
+                    restar: subEntries(entries),
+                    dividir: divResponse,
+                    multiplicar: multiplyEntries(entries)
+                }
+
+                document.querySelector('#response').innerText = JSON.stringify(response, null, 2)
+            })
+        })();
+    </script>
+
+
+
 </body>
 
 </html>
