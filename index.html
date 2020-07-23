@@ -72,7 +72,9 @@
                     sumar: sumEntries(entries),
                     restar: subEntries(entries),
                     dividir: divResponse,
-                    multiplicar: multiplyEntries(entries)
+                    multiplicar: multiplyEntries(entries),
+                    ascendente: orderEntriesAsc(entries),
+                    descendiente: orderEntriesDes(entries)
                 }
 
                 document.querySelector('#response').innerText = JSON.stringify(response, null, 2)
