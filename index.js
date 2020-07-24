@@ -18,10 +18,17 @@ function nonNumericEntries(entries) {
     return nonNumeric
 }
 
+function entriesToNumbers(entries) {
+    for (let key in entries) {
+        entries[key] = parseInt(entries[key])
+    }
+    return entries
+}
+
 function sumEntries(entries) {
     let result = 0
     for (let key in entries) {
-        result += Number(entries[key])
+        result += entries[key]
     }
     return result
 }
@@ -82,12 +89,4 @@ function orderEntriesDes(entries) {
     }
     result = result.sort((a, b) => b - a)
     return result
-}
-
-function entriesToNumbers(entries) {
-    for (let key in entries) {
-        entries[key] = entries[key]
-
-    }
-    return entries
 }
